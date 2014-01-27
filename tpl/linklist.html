@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>{include="head"}</head>
+<body>
+    {include="menu"}
+    <div id="wrap">
+    <nav class="paging">
+     	 <div class="linksPpages">
+    		{if="$previous_page_url"} <a href="{$previous_page_url}" id="paging_older">&#x25C4;Older</a> {/if}
+    		page {$page_current} / {$page_max} 
+   			{if="$next_page_url"} <a href="{$next_page_url}" id="paging_newer">Newer&#x25BA;</a> {/if}
+   			Liens/pages: <a href="?linksperpage=20">20</a> <a href="?linksperpage=50">50</a> <a href="?linksperpage=100">100</a>
+   		 </div>
+   		 <h3 class="linkCount">
+   		 	{if="isLoggedIn()"}
+    			<a href="?privateonly"
+				{if="$privateonly"}
+					class="private"
+				{else}
+					class="public"
+				{/if}
+				></a>
+			{/if}
+   		 	{if="!empty($linkcount)"}{$linkcount} liens{/if}
+   		 </h3>
+	</nav>    
+
+    {if="count($links)==0"}
+        <div id="searchcriteria">Nothing found.</i></div>
+    {else}
+        {if="$search_type=='fulltext'"}
+            <div id="searchcriteria">{$result_count} results for <i>{$search_crits}</i></div>
+        {/if}
+        {if="$search_type=='tags'"}
+            <div id="searchcriteria">{$result_count} results for tags <i>
+            {loop="search_crits"}
+                <span class="linktag" title="Remove tag"><a href="?removetag={$value|htmlspecialchars}">{$value|htmlspecialchars} <span style="border-left:1px solid #aaa; padding-left:5px; color:#6767A7;">x</span></a></span>
+            {/loop}</i></div>
+        {/if}
+    {/if}
+
+        {loop="links"}
+        <section name="{$value.linkdate|smallHash}" id="{$value.linkdate|smallHash}">
+                {if="isLoggedIn()"}
+                    <div class="linkeditbuttons">                                                       
+                        <form method="GET" class="buttonEdit"><input type="hidden" name="edit_link" value="{$value.linkdate}"><input type="image" alt="✏" title="Edit" class="button_edit" onClick="return confirm('Editer le lien?');"></form>
+                        <form method="POST" class="buttonDelete"><input type="hidden" name="lf_linkdate" value="{$value.linkdate}">
+                        <input type="hidden" name="token" value="{$token}"><input type="hidden" name="delete_link"><input type="image" alt="" title="Delete" class="button_delete" onClick="return confirmDeleteLink();"></form>
+                    </div>
+                {/if}
+                <h2 class="linktitle"><a href="{$redirector}{$value.url|htmlspecialchars}">{$value.title|htmlspecialchars}</a></h2>
+                <div class="thumbnail">{$value.url|thumbnail}</div>
+                {if="$value.description"}<div class="linkdescription"{if condition="$search_type=='permalink'"} style="max-height:none !important;"{/if}>{$value.description}</div>{/if}
+                {if="!$GLOBALS['config']['HIDE_TIMESTAMPS'] || isLoggedIn()"}
+                <div id="clear"></div>	
+              	  <ul class="sectionBottom">
+              	    {if="$value.tags"}
+                   	  <li>{loop="value.taglist"}<a class="Tag" href="?addtag={$value|urlencode}">{$value|htmlspecialchars}</a>{/loop} - </li>
+              	 	 {/if} 
+           			<li><a href="?{$value.linkdate|smallHash}">{$value.localdate|htmlspecialchars} - permalink</a> - </li>
+                {else}
+                    <li><a href="?{$value.linkdate|smallHash}">permalink</a> - </li> 
+                {/if}
+                <li>{$value.url|htmlspecialchars} - </li>
+                <li><a href="http://qrfree.kaywa.com/?l=1&s=8&d={$scripturl|urlencode}%3F{$value.linkdate|smallHash}" 
+                    onclick="showQrCode(this); return false;" class="qrcode" data-permalink="{$scripturl}?{$value.linkdate|smallHash}"><img src="images/qrcode.png#" width="13" height="13" title="QR-Code"></a></li>     
+              	</ul>                      
+        </section>
+    {/loop}
+
+    <nav class="paging">
+     	 <div class="linksPages">
+    		{if="$previous_page_url"} <a href="{$previous_page_url}" id="paging_older">&#x25C4;Older</a> {/if}
+    		page {$page_current} / {$page_max} 
+   			{if="$next_page_url"} <a href="{$next_page_url}" id="paging_newer">Newer&#x25BA;</a> {/if}
+   			Liens/pages: <a href="?linksperpage=20">20</a> <a href="?linksperpage=50">50</a> <a href="?linksperpage=100">100</a>
+   		 </div>
+	</nav>
+	{include="footer"} 
+	</div>
+
+<script language="JavaScript">
+// Remove any displayed QR-Code
+function remove_qrcode()
+{ 
+    var elem = document.getElementById("permalinkQrcode");
+    if (elem) elem.parentNode.removeChild(elem);
+    return false;
+}
+
+// Show the QR-Code of a permalink (when the QR-Code icon is clicked).
+function showQrCode(caller,loading=false)
+{ 
+    // Dynamic javascript lib loading: We only load qr.js if the QR code icon is clicked:
+    if (typeof(qr)=='undefined') // Load qr.js only if not present.
+    {
+        if (!loading)  // If javascript lib is still loading, do not append script to body.
+        {
+            var element = document.createElement("script");
+            element.src = "inc/qr.min.js";
+            document.body.appendChild(element);
+        }
+        setTimeout(function() { showQrCode(caller,true);}, 200); // Retry in 200 milliseconds.
+        return false;
+    }
+
+    // Remove previous qrcode if present.
+    remove_qrcode();
+    
+    // Build the div which contains the QR-Code:
+    var element = document.createElement('div');
+    element.id="permalinkQrcode";
+	// Make QR-Code div commit sepuku when clicked:
+    if ( element.attachEvent ){ element.attachEvent('onclick', 'this.parentNode.removeChild(this);' ); } // Damn IE
+    else { element.setAttribute('onclick', 'this.parentNode.removeChild(this);' ); }
+    
+    // Build the QR-Code:
+    var image = qr.image({size: 8,value: caller.dataset.permalink});
+    if (image)
+    { 
+        element.appendChild(image);
+        element.innerHTML+= "<br>Click to close";
+        caller.parentNode.appendChild(element);
+    }
+    else
+    {
+        element.innerHTML="Your browser does not seem to be HTML5 compatible.";
+    }
+    return false;
+}
+</script>
+</body>
+</html>

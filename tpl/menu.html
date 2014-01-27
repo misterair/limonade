@@ -1,0 +1,51 @@
+<header>
+	<div id="navCenter">
+		<button class="menuButton-1" title="Afficher le Menu" onclick="addClass('navCenter', 'big')"></button>
+		<button class="menuButton-2" title="Masquer le Menu" onclick="removeClass('navCenter', 'big')"></button>
+    	<div id="navMenu">
+   			<ul>
+  				<li><a href="{$feedurl}?do=rss{$searchcrits}" class="nomobile">RSS Feed</a></li>
+				<li><a href="{$feedurl}?do=atom{$searchcrits}" style="padding-left:10px;" class="nomobile">ATOM Feed</a></li>
+   				<li><a href="?do=tagcloud">Tag cloud</a></li>
+   				<li><a href="?do=picwall{$searchcrits}">Picture wall</a></li>
+   				<li><a href="?do=daily">Daily</a></li>
+   			</ul>
+   		</div>
+   		<button id="logo" title="Share your links !" onclick="document.location='?';">
+   			<img src="../images/Shaarli.png" height="38px" width=38px">
+   			<p>{$shaarlititle|htmlspecialchars}</p>
+   		</button>
+   		<ul class="navButtons">
+   		{if="isLoggedIn()"}
+   			<li><a class="search" onclick="addClass('search', 'show')"></a></li>
+       		<li><a class="addLink" onclick="addClass('add', 'show')">+</a></li>
+       		<li><a href="?do=configure">颁</a></li>
+       		<li><a href="?do=logout"></a></li>
+   		{elseif="$GLOBALS['config']['OPEN_SHAARLI']"}
+   			<li><a class="search" onclick="addClass('search', 'show')"></a></li>
+   			<li><a class="addLink" onclick="addClass('add', 'show')">+</a></li>
+   			<li><a href="?do=configure">颁</a></li>
+		{else}
+			<li>
+				<a href="?do=login"></a>
+			</li>
+		{/if}
+		</ul>
+   	</div>
+</header>
+<div id="clear"></div>	
+
+<div id="add" class="none">
+	<a style="cursor:pointer" onclick="removeClass('add', 'show')">(X) </a><b>Ajouter un lien:</b>
+		<form method="GET" action="" name="addform" class="addform"  autofocus>
+			<input type="text" name="post" style="width:50%;"> 
+			<input type="submit" value="Add link" class="bigbutton">
+		</form>
+	<div id="clear"></div>
+</div>
+
+<div id="search" class="none">
+    	<a style="cursor:pointer" onclick="removeClass('search', 'show')">(X) </a><b>Chercher:</b>
+        <form method="GET" class="searchform" name="searchform" style="display:inline;"><input type="text" id="searchform_value" name="searchterm" style="width:30%" value=""> <input type="submit" value="Search" class="bigbutton"></form>
+        <form method="GET" class="tagfilter" name="tagfilter" style="display:inline;margin-left:24px;"><input type="text" name="searchtags" id="tagfilter_value" style="width:10%" value=""> <input type="submit" value="Filter by tag" class="bigbutton"></form>
+</div>

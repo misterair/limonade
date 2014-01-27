@@ -1,0 +1,40 @@
+<title>{$pagetitle}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<link rel="alternate" type="application/rss+xml" href="{$feedurl}?do=rss{$searchcrits}#" title="RSS Feed" />
+<link rel="alternate" type="application/atom+xml" href="{$feedurl}?do=atom{$searchcrits}#" title="ATOM Feed" />
+<link href="images/favicon.ico#" rel="shortcut icon" type="image/x-icon" />
+<link type="text/css" rel="stylesheet" href="inc/shaarli.css?version={$version|urlencode}#" />
+<script type="text/javascript">
+{if condition="is_file('inc/user.css')"}<link type="text/css" rel="stylesheet" href="inc/user.css?version={$version}#" />{/if}
+function addClass(id,new_class){
+       var i,n=0;
+
+       new_class=new_class.split(",");
+
+       for(i=0;i<new_class.length;i++){
+               if((" "+document.getElementById(id).className+" ").indexOf(" "+new_class[i]+" ")==-1){
+                       document.getElementById(id).className+=" "+new_class[i];
+                       n++;
+               }
+       }
+
+       return n;
+}
+function removeClass(id,classToRemove){
+ 
+var i = 0,
+n = 0,
+$id = document.getElementById(id),
+classes = classToRemove.split(",");
+ 
+for(; i < classes.length; i++) {
+ 
+if( $id.className.indexOf(classes[i]) > -1 ) {
+$id.className = $id.className.replace(classes[i],'').replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+}
+}
+}
+</script>
+

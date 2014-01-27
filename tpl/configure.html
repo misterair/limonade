@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{include="head"}
+</head>
+<body onload="document.configform.title.focus();">
+	{include="menu"}
+	<div id="wrap">
+		<section>
+			<h3>Configuration:</h3>
+			{$timezone_js}
+  			<form method="POST" action="" name="configform" id="configform">
+				<input type="hidden" name="token" value="{$token}">
+				<table border="0" cellpadding="20">
+	    			<tr><td><b>Page title:</b></td><td><input type="text" name="title" id="title" size="50" value="{$title}"></td></tr>
+	    			<tr><td valign="top"><b>Timezone:</b></td><td valign="top">{$timezone_form}</td></tr>
+	    			<tr><td valign="top"><b>Redirector</b></td><td><input type="text" name="redirector" id="redirector" size="50" value="{$redirector}"><br>(e.g. <i>http://anonym.to/?</i> will mask the HTTP_REFERER)</td></tr>
+        			<tr><td valign="top"><b>Security:</b></td><td><input type="checkbox" name="disablesessionprotection" id="disablesessionprotection" {if="!empty($GLOBALS['disablesessionprotection'])"}checked{/if}><label for="disablesessionprotection">&nbsp;Disable session cookie hijacking protection (Check this if you get disconnected often or if your IP address changes often.)</label></td></tr>
+        			<tr><td valign="top"><b>Features:</b></td><td>
+        			<input type="checkbox" name="disablejquery" id="disablejquery" {if="!empty($GLOBALS['disablejquery'])"}checked{/if}><label for="disablejquery">&nbsp;Disable jQuery and all heavy javascript (for example: Autocomplete in tags. Useful for slow computers.)</label>
+        			</td></tr>
+        			<tr><td valign="top"><b>New link:</b></td><td>
+        			<input type="checkbox" name="privateLinkByDefault" id="privateLinkByDefault" {if="!empty($GLOBALS['privateLinkByDefault'])"}checked{/if}/><label for="privateLinkByDefault">&nbsp;All new link are private by default</label></td>
+       				 </tr>
+	 			 <tr><td></td><td align="right"><input type="submit" name="Save" value="Save config" class="bigbutton"></td></tr>
+			</table>
+		</form>
+	</section>
+	<section>
+		<h3>Mot de passe:</h3>
+		<form method="POST" action="" name="changepasswordform" id="changepasswordform">
+	Old password: <input type="password" name="oldpassword">&nbsp; &nbsp;
+	New password: <input type="password" name="setpassword">
+		<input type="hidden" name="token" value="{$token}">
+		<input type="submit" name="Save" value="Save password" class="bigbutton"></form>
+		<div id="clear"></div>
+	</section>
+	<section>
+		<h3>Tags:</h3>
+		<a href="?do=changetag"><b>Renommer/supprimer des tags</b></a>
+	</section>
+	<section>
+		<h3>Bookmark:</h3>   
+		<a class="smallbutton" onclick="alert('Drag this link to your bookmarks toolbar, or right-click it and choose Bookmark This Link...');return false;" href="javascript:javascript:(function(){var%20url%20=%20location.href;var%20title%20=%20document.title%20||%20url;window.open('{$pageabsaddr}?post='%20+%20encodeURIComponent(url)+'&amp;title='%20+%20encodeURIComponent(title)+'&amp;source=bookmarklet','_blank','menubar=no,height=390,width=600,toolbar=no,scrollbars=no,status=no,dialog=1');})();"><b>Shaare link</b></a> <a href="#" style="clear:none;"><span>&#x21D0; Drag this link to your bookmarks toolbar (or right-click it and choose Bookmark This Link....).<br>&nbsp;&nbsp;&nbsp;&nbsp;Then click "Shaare link" button in any page you want to share.</span></a>
+	</section>
+	<section>
+		<h3>Importer html bookmarks (Firefox/Chrome/Opera/delicious/diigo...):</h3>
+		<form method="POST" action="?do=upload" enctype="multipart/form-data" name="uploadform" id="uploadform">
+	    	<input type="hidden" name="token" value="{$token}">
+	    	<input type="file" name="filetoupload" size="80">
+	    	<input type="hidden" name="MAX_FILE_SIZE" value="{$maxfilesize|htmlspecialchars}">
+	    	<input type="submit" name="import_file" value="Import" class="bigbutton"><br>
+	    	<input type="checkbox" name="private" id="private"><label for="private">&nbsp;Import all links as private</label><br>
+	    	<input type="checkbox" name="overwrite" id="overwrite"><label for="overwrite">&nbsp;Overwrite existing links</label>
+		</form>
+	</section>
+	<section>
+		<h3>Exporter:</h3>
+		<a href="?do=export&what=all"><b>Export all</b> <span>: Export all links</span></a><br><br>
+	    <a href="?do=export&what=public"><b>Export public</b> <span>: Export public links only</a><br><br>
+	    <a href="?do=export&what=private"><b>Export private</b> <span>: Export private links only</a><br><br style="clear:both;">
+	</section>
+	{include="footer"}
+</div>
+</body>
+</html>
