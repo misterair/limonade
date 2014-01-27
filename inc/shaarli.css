@@ -448,7 +448,7 @@ border-radius: 18px;
 box-shadow: 0 0 8px #000;
 display: table-row;
 float: left;
-margin: 10px 18px;
+margin:18px 10px;
 max-width: 300px;
 overflow:hidden;
 position:relative;

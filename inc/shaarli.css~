@@ -94,7 +94,7 @@ display:block;
 /*Barre de Navigation*/
 nav{
 background:linear-gradient(180deg,#eee 0%, #E9E9E9 40%, #DFDFDF 100%);
-background:-webkit-linear-gradient(180deg,#eee 0%, #E9E9E9 40%, #DFDFDF 100%);
+background:-webkit-linear-gradient(top,#eee 0%, #E9E9E9 40%, #DFDFDF 100%);
 position:relative;
 width:100%;
 padding: 0;
@@ -190,6 +190,7 @@ margin-left: -13px;
 text-shadow: 2px 2px #000000;
 color:#fff;
 z-index:3;
+overflow:hidden;
 }
 button#logo p {
 position: relative;
@@ -283,7 +284,7 @@ box-shadow:0 0 12px rgba(0, 0, 0, 0.85);
 }
 #add,#search{
 background:linear-gradient(180deg, #EEEEEE 0%, #E9E9E9 40%, #DFDFDF 100%) repeat scroll 0 0 #eee;
-background:-webkit-linear-gradient(180deg, #EEEEEE 0%, #E9E9E9 40%, #DFDFDF 100%);
+background:-webkit-linear-gradient(top, #EEEEEE 0%, #E9E9E9 40%, #DFDFDF 100%);
 border-radius: 6px;
 max-width:900px;
 margin: 0 auto 20px;
@@ -297,7 +298,7 @@ box-shadow:0 0 12px rgba(0, 0, 0, 0.85);
 a.addLink,a.search{cursor:pointer}
 ul.sectionBottom {
 background:linear-gradient(0deg, #EEEEEE 0%, #E9E9E9 40%, #DFDFDF 100%) repeat scroll 0 0 #eee;
-background:-webkit-linear-gradient(0deg, #EEEEEE 0%, #E9E9E9 40%, #DFDFDF 100%);
+background:-webkit-linear-gradient(bottom, #EEEEEE 0%, #E9E9E9 40%, #DFDFDF 100%);
 border: 1px solid #ccc;
 border-radius: 8px;
 box-shadow: 1px -1px #fff;
@@ -327,7 +328,7 @@ box-shadow: 1px 1px #fff;
 section.article{overflow:hidden}
 section{
 background:linear-gradient(180deg,#eee 0%, #E9E9E9 80%, #DFDFDF 100%);
-background:-webkit-linear-gradient(180deg,#eee 0%, #E9E9E9 80%, #DFDFDF 100%);
+background:-webkit-linear-gradient(top,#eee 0%, #E9E9E9 80%, #DFDFDF 100%);
 max-width:900px;
 margin: 0 auto;
 position:relative;
@@ -358,7 +359,7 @@ font-size:0.92em;
 line-height:3em;
 width:100%;
 background:linear-gradient(0deg, #aaa 0%, #ccc 18%, #ccc 100%) repeat scroll 0 0 #eee;
-background:-webkit-linear-gradient(0deg, #aaa 0%, #ccc 18%, #ccc 100%);
+background:-webkit-linear-gradient(bottom, #aaa 0%, #ccc 18%, #ccc 100%);
 border-bottom: 1px solid #aaa;
 box-shadow: 0 1px #fff;
 }
@@ -528,7 +529,7 @@ text-align:center;
 line-height:3em;
 width:100%;
 background:linear-gradient(180deg, #aaa 0%, #ccc 18%, #ccc 100%) repeat scroll 0 0 #eee;
-background:-webkit-linear-gradient(180deg, #aaa 0%, #ccc 18%, #ccc 100%);
+background:-webkit-linear-gradient(top, #aaa 0%, #ccc 18%, #ccc 100%);
 border-top: 1px solid #aaa;
 box-shadow: 0 -1px #fff;
 }
