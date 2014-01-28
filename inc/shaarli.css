@@ -50,12 +50,12 @@ line-height:1.8em;
 font-size:1.4em;
 white-space:pre-wrap;
 }
-:focus {outline: 0;}
+:focus {outline: none;}
 img {
 max-width: 100%;
 height: auto;
 }
-input[type="text"],input[type="email"],textarea {
+input[type="text"],input[type="password"],textarea {
 background: #fff;
 border: 1px solid #ccc;
 border-radius: 4px;
@@ -191,6 +191,11 @@ text-shadow: 2px 2px #000000;
 color:#fff;
 z-index:3;
 overflow:hidden;
+}
+button#logo > img {
+float: left;
+position: relative;
+width: 38px;
 }
 button#logo p {
 position: relative;
@@ -419,8 +424,10 @@ font-family: "mfg_labs_iconsetregular";
 content: "\F075";
 color:#8C8C8C;
 }
-.button_edit,.button_delete{
+input.button_edit,input.button_delete{
 font-family: "mfg_labs_iconsetregular";
+border:none;
+outline:none;
 }
 .linkeditbuttons {
 background: #ccc;
@@ -539,6 +546,7 @@ box-shadow: 0 -1px #fff;
 /* ----------------------------- */
 @media (max-width:900px) {
 #wrap {border-radius:0;margin: 0 auto 0;}
+#add, #search{border-radius:0}
 }
 @media (max-width:856px) {
 #daily_col1, #daily_col2, #daily_col3{max-width:350px;width:44%}
@@ -552,6 +560,9 @@ a[href="?do=login"]:after, a[href="?do=logout"]:after, a.addLink:after, a.search
 #daily_col1, #daily_col2, #daily_col3{width:99%}
 section.daily{display:block}
 #daily_col2{margin:0}
+}
+@media (max-width:370px) {
+button#logo{width:44px}
 }
 @media (max-width:340px) {
 .picwall_pictureframe img{height:auto;width:100%;}

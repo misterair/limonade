@@ -50,12 +50,12 @@ line-height:1.8em;
 font-size:1.4em;
 white-space:pre-wrap;
 }
-:focus {outline: 0;}
+:focus {outline: none;}
 img {
 max-width: 100%;
 height: auto;
 }
-input[type="text"],input[type="email"],textarea {
+input[type="text"],input[type="password"],textarea {
 background: #fff;
 border: 1px solid #ccc;
 border-radius: 4px;
@@ -191,6 +191,11 @@ text-shadow: 2px 2px #000000;
 color:#fff;
 z-index:3;
 overflow:hidden;
+}
+button#logo > img {
+float: left;
+position: relative;
+width: 38px;
 }
 button#logo p {
 position: relative;
@@ -419,8 +424,10 @@ font-family: "mfg_labs_iconsetregular";
 content: "\F075";
 color:#8C8C8C;
 }
-.button_edit,.button_delete{
+input.button_edit,input.button_delete{
 font-family: "mfg_labs_iconsetregular";
+border:none;
+outline:none;
 }
 .linkeditbuttons {
 background: #ccc;
@@ -448,7 +455,7 @@ border-radius: 18px;
 box-shadow: 0 0 8px #000;
 display: table-row;
 float: left;
-margin: 10px 18px;
+margin:18px 10px;
 max-width: 300px;
 overflow:hidden;
 position:relative;
@@ -552,6 +559,9 @@ a[href="?do=login"]:after, a[href="?do=logout"]:after, a.addLink:after, a.search
 #daily_col1, #daily_col2, #daily_col3{width:99%}
 section.daily{display:block}
 #daily_col2{margin:0}
+}
+@media (max-width:370px) {
+button#logo{width:44px}
 }
 @media (max-width:340px) {
 .picwall_pictureframe img{height:auto;width:100%;}
