@@ -4,6 +4,8 @@ En toute modestie, LE meilleur thème pour [**Shaarli**](https://github.com/sebs
 Ce thème est le petit frère de [*HotBeer*](https://github.com/misterair/HotBeer), mon thème pour le fabuleux agrégateur de flux RSS Leed.
 
 
+![screenshot](http://remitaines.com/wp-content/uploads/2014/01/6-Shaarli-Limonade-screenshot2.png)
+
 *Vous pouvez voir le thème en live sur: [bookmarks.remitaines.fr](http://bookmarks.remitaines.fr)*
 
 ----------------------------------------------------------------------------*
