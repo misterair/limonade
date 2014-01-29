@@ -23,6 +23,8 @@ License: BeerWare.
 	font-variant: normal
 }
 
+html, body {height: 100%}
+
 body{
 background:url("/images/background.png");
 border:none;
