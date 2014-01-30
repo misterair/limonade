@@ -16,11 +16,14 @@ License: BeerWare.
     font-style: normal;
 }
 @font-face {
-	font-family: "Cantarell-Regular";
-	src: url('fonts/Cantarell-Regular.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-	font-variant: normal
+    font-family: 'cantarellregular';
+    src: url('fonts/cantarell-regular-webfont.eot');
+    src: url('fonts/cantarell-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/cantarell-regular-webfont.woff') format('woff'),
+         url('fonts/cantarell-regular-webfont.ttf') format('truetype'),
+         url('fonts/cantarell-regular-webfont.svg#cantarellregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 html, body {height: 100%}
@@ -37,8 +40,10 @@ line-height: 1.78em;
 font-weight: normal;
 font-size:0.79em;
 text-indent:1em;
-font-family:"Cantarell-Regular", Helvetica, Arial, sans-serif;
+font-family:"cantarell-regular", Helvetica, Arial, sans-serif;
+text-shadow:0 0 1px #eee;
 -webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
 }
 button{cursor: pointer;}
 a:link {color: #459D00;text-decoration:none;}  
@@ -232,7 +237,7 @@ line-height: 2.1em;
 text-shadow: 1px 1px #000000;
 }
 a[href="?do=login"]:after,a[href="?do=logout"]:after,a.addLink:after,a.search:after,a[href="?do=configure"]:after{
-font-family: "Cantarell-Regular",Helvetica,Arial,sans-serif;font-size: 0.8em;
+font-family: "cantarell-regular",Helvetica,Arial,sans-serif;font-size: 0.8em;
 }
 a[href="?do=login"]:after{content: " Connexion";}
 a[href="?do=logout"]:after{content: " Déconnexion";}
